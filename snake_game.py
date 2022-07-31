@@ -70,5 +70,5 @@ def _move_():
         x = head.xcor
         head.setx(x + 20)
 
- #Jey-bindings for the movements of snake   
+ #Key-bindings for the movements of snake   
      

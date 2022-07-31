@@ -1,4 +1,11 @@
 import turtle
+import time
+
+delay = 0.1
+
+#Score
+score = 0
+high_score = 0
 
 #screen setup
 wnd=turtle.Screen()
@@ -70,5 +77,32 @@ def _move_():
         x = head.xcor
         head.setx(x + 20)
 
- #Key-bindings for the movements of snake   
-     
+#Key-bindings for the movements of snake   
+wnd.listen()
+wnd.onkeypress(_go_up,"w")
+wnd.onkeypress(_go_down, "s")
+wnd.onkeypress(_go_left, "a")
+wnd.onkeypress(_go_right, "d")
+
+#Main Game loop
+while True:
+    wnd.update()
+
+    #Collison check with the border
+    if head.xcor()>300 or head.xcor()<-300 or head.ycor()>300 or head.ycor()<-300:
+        time.sleep(1)
+        head.goto(0,0)
+        head.direction = "stop"
+
+        for segment in segments:
+            segment.goto(1000,1000)
+
+        segment.clear()
+        score = 0
+        delay = 0.1
+        pen.clear()
+        pen.write("Score: {} High Score: {}".format(score, high_score), align="centre", font=("Courier", 24, "normal"))
+
+
+    #Eating the food
+    

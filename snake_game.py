@@ -146,5 +146,6 @@ while True:
             head.goto(0,0)
             head.direction = "stop"
 
+    time.sleep(delay)
 
-            
+wnd.mainloop()

@@ -140,3 +140,11 @@ while True:
     move()
 
     #Check for the collision with the own body segements
+    for segement in segments:
+        if segment.distance(head) < 20:
+            time.sleep(1)
+            head.goto(0,0)
+            head.direction = "stop"
+
+
+            

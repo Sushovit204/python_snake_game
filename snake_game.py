@@ -41,7 +41,7 @@ pen.shape("oval")
 pen.color("brown")
 pen.penup()
 pen.hideturtle()
-pen.goto(0,250)
+pen.goto(0,260)
 pen.write("Score: 0  High Score: 0", align="centre", font=("Courier", 22, "normal"))
 
 #Functions
@@ -102,7 +102,7 @@ while True:
         score = 0
         delay = 0.1
         pen.clear()
-        pen.write("Score: {} High Score: {}".format(score, high_score), align="centre", font=("Courier", 24, "normal"))
+        pen.write("Score: {}  High Score: {}".format(score, high_score), align="centre", font=("Courier", 24, "normal"))
 
 
     #Eating the food
@@ -134,6 +134,11 @@ while True:
     for index in range (len(segments)-1, 0, -1):
         x = segments[index-1].xcor()
         y = segments[index-1].ycor()
+        segments[index].goto(x,y)
+
+    if len(segments) > 0:
+        x = head.xcor()
+        y = head.ycor()
         segments[0].goto(x,y)
 
     move()

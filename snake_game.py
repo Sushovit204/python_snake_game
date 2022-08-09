@@ -11,8 +11,8 @@ high_score = 0
 #screen setup
 wnd=turtle.Screen()
 wnd.title("Snake Game by @Sushovit204")
-wnd.bgcolor("blue")
-wnd.setup(width=500, height=500)
+wnd.bgcolor("white")
+wnd.setup(width=600, height=600)
 wnd.tracer(0)
 
 #snake head
@@ -35,14 +35,14 @@ food.goto(0,100)
 segments=[]
 
 # Pen
-pen=turtle.Turtle
+pen=turtle.Turtle()
 pen.speed(0)
-pen.shape("oval")
+pen.shape("square")
 pen.color("brown")
 pen.penup()
 pen.hideturtle()
 pen.goto(0,260)
-pen.write("Score: 0  High Score: 0", align="centre", font=("Courier", 22, "normal"))
+pen.write("Score: 0  High Score: 0", align="center", font=("Courier", 24, "normal"))
 
 #Functions
 def go_up():
@@ -62,20 +62,20 @@ def go_right():
         head.direction = "right"
 
 def move():
-    if head.direction() == "up":
+    if head.direction == "up":
         y = head.ycor()
         head.sety(y +20)
 
-    if head.direction() =="down":
+    if head.direction =="down":
         y = head.ycor()
-        head.setx(y - 20)
+        head.sety(y - 20)
 
-    if head.direction() =="left":
+    if head.direction =="left":
         x = head.xcor()
         head.setx(x - 20)
 
-    if head.direction() =="right":
-        x = head.xcor
+    if head.direction =="right":
+        x = head.xcor()
         head.setx(x + 20)
 
 #Key-bindings for the movements of snake   
@@ -90,7 +90,7 @@ while True:
     wnd.update()
 
     #Collison check with the border
-    if head.xcor()>300 or head.xcor()<-300 or head.ycor()>300 or head.ycor()<-300:
+    if head.xcor()>290 or head.xcor()<-290 or head.ycor()>290 or head.ycor()<-290:
         time.sleep(1)
         head.goto(0,0)
         head.direction = "stop"
@@ -98,11 +98,11 @@ while True:
         for segment in segments:
             segment.goto(1000,1000)
 
-        segment.clear()
+        segments.clear()
         score = 0
         delay = 0.1
         pen.clear()
-        pen.write("Score: {}  High Score: {}".format(score, high_score), align="centre", font=("Courier", 24, "normal"))
+        pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
 
 
     #Eating the food
@@ -144,21 +144,21 @@ while True:
     move()
 
     #Check for the collision with the own body segements
-    for segement in segments:
+    for segment in segments:
         if segment.distance(head) < 20:
             time.sleep(1)
             head.goto(0,0)
             head.direction = "stop"
 
-            for segement in segments:
-                segement.goto(1000,1000)
+            for segment in segments:
+                segment.goto(1000,1000)
 
             segments.clear
 
             score=0
             delay=0.1
             pen.clear()
-            pen.write("Score: {}  High Score: {}".format(score, high_score), align='centre', font=('Courier',24,'normal'))
+            pen.write("Score: {}  High Score: {}".format(score, high_score), align='center', font=('Courier',24,'normal'))
 
 
     time.sleep(delay)

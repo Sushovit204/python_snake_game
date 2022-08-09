@@ -1,4 +1,3 @@
-from shutil import move
 import turtle
 import time
 import random
@@ -46,23 +45,23 @@ pen.goto(0,250)
 pen.write("Score: 0  High Score: 0", align="centre", font=("Courier", 22, "normal"))
 
 #Functions
-def _go_up():
+def go_up():
     if head.direction !="down":
         head.direction = "up"
 
-def _go_down():
+def go_down():
     if head.direction != "up":
         head.direction = "down"
 
-def _go_left():
+def go_left():
     if head.direction != "right":
         head.direction = "left"
 
-def _go_right():
+def go_right():
     if head.direction != "left":
         head.direction = "right"
 
-def _move_():
+def move():
     if head.direction() == "up":
         y = head.ycor()
         head.sety(y +20)
@@ -81,10 +80,10 @@ def _move_():
 
 #Key-bindings for the movements of snake   
 wnd.listen()
-wnd.onkeypress(_go_up,"w")
-wnd.onkeypress(_go_down, "s")
-wnd.onkeypress(_go_left, "a")
-wnd.onkeypress(_go_right, "d")
+wnd.onkeypress(go_up,"w")
+wnd.onkeypress(go_down, "s")
+wnd.onkeypress(go_left, "a")
+wnd.onkeypress(go_right, "d")
 
 #Main Game loop
 while True:
@@ -145,6 +144,17 @@ while True:
             time.sleep(1)
             head.goto(0,0)
             head.direction = "stop"
+
+            for segement in segments:
+                segement.goto(1000,1000)
+
+            segments.clear
+
+            score=0
+            delay=0.1
+            pen.clear()
+            pen.write("Score: {}  High Score: {}".format(score, high_score), align='centre', font=('Courier',24,'normal'))
+
 
     time.sleep(delay)
 
